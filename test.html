@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <img id="testImg"></img>
+  <script>
+      let img = document.getElementById("testImg")
+      function testReq(){
+          fetch("http://localhost:9100/testPng",{
+            headers:{
+              'cache-control': 'public'
+            }, cache: "force-cache",  mode: "cors",
+          }).then(res=>{
+              return res.blob()
+          }).then(blob=>{
+             let url = URL.createObjectURL(blob)
+            img.src = url
+          })
+      }
+
+      testReq()
+
+  </script>
+</body>
+</html>
